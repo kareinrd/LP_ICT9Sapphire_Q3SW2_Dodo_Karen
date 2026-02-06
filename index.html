@@ -102,8 +102,9 @@
 .button-row {
     display: flex;
     justify-content: space-between; 
+    align-items: flex-start;
     margin-right: 90px;
-    margin-left: 100px;
+    margin-left: 260px;
     width: 80%;
     max-width: 800px; 
 }
@@ -119,6 +120,25 @@
     transition: 0.3s;
     min-width: 160px;          
 }
+
+.brand-pill {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #555;
+    padding: 8px 20px;
+    border-radius: 50px; 
+    font-size: 12px;
+    text-align: center;
+    min-width: 140px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.rec-label {
+    color: white;
+    font-size: 11px;
+    margin-bottom: 5px;
+    font-style: italic;
+}
     </style>
     
 </head>
@@ -126,7 +146,7 @@
     
     <nav class="navbar">
         <div class="nav-section nav-left">
-            <button class="nav-btn" onclick="location.href='#'">Home</button>
+            <button class="nav-btn" onclick="location.href='#'">Shop</button>
             <button class="nav-btn" onclick="alert('Searching for your location...')">Locate</button>
         </div>
 
@@ -140,23 +160,66 @@
         </div>
     </nav>
 
-    <div class="hero-container">
-        <div class="budget-box">
-            <h2>Want a gaming laptop?</h2>
-            <p>Enter your budget and let's find the right one for you!</p>
-            <input type="number" class="budget-input" id="budgetAmount" placeholder="Enter here...">
-        </div>
+   <div class="hero-container">
+    <div class="budget-box">
+        <h2>Want a gaming laptop?</h2>
+        <p>Enter your budget and let's find the right one for you!</p>
+        <input type="number" class="budget-input" id="budgetAmount" placeholder="Enter here...">
+    </div>
+</div>
+
+<div class="button-row"> 
+    <div class="left-group" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <button class="action-btn" onclick="applyDiscount()">Brand & Discounts</button>
+        
+        <div id="brand-container" style="display: flex; flex-direction: column; align-items: center; gap: 5px;"></div>
+
+        <button class="action-btn" id="resultBtn" style="display: none; background-color: #28a745; border: 1px solid white;">
+            You are eligible for: 0.00
+        </button>
     </div>
 
-    <div class="button-row"> 
-                <button class="action-btn"> Brand & Discounts</button>
-                <button class="action-btn"> Store location</button>
-            </div>
-    <script>
+    <button class="action-btn">Store Location</button>
+</div>
+
+<script>
+    function applyDiscount() {
+        // 1. Grab the elements
         const budgetInput = document.getElementById('budgetAmount');
-        budgetInput.addEventListener('input', (e) => {
-            console.log("Current Budget:", e.target.value);
-        });
-    </script>
+        const resultBtn = document.getElementById('resultBtn');
+        const brandContainer = document.getElementById('brand-container');
+        
+        // 2. Get the number and convert it
+        const val = budgetInput.value;
+        const budgetNum = parseFloat(val);
+
+        // 3. Stop if empty or not a number
+        if (!val || isNaN(budgetNum)) {
+            alert("Please enter a budget number first!");
+            return;
+        }
+
+        // 4. Calculate 20% discount (Multiplying by 0.8 is the same as -20%)
+        const discounted = budgetNum * 0.8;
+
+        // 5. Update the Green Button and Show it
+        resultBtn.innerText = "You are eligible for: " + discounted.toLocaleString(undefined, {minimumFractionDigits: 2});
+        resultBtn.style.display = "block"; 
+
+        // 6. Brand Logic
+        let brands = [];
+        if (budgetNum < 30000) {
+            brands = ["Acer"];
+        } else if (budgetNum >= 30000 && budgetNum < 50000) {
+            brands = ["Acer", "Asus"];
+        } else {
+            brands = ["Acer", "Asus", "Lenovo"];
+        }
+
+        // 7. Render Brands
+        brandContainer.innerHTML = '<span class="rec-label">Recommended Brands:</span>' + 
+            brands.map(b => `<div class="brand-pill">${b}</div>`).join('');
+    }
+</script>
 </body>
 </html>

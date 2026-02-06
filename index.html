@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3 Seatwork 2</title>
+
+<style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #331cb1;
+            color: rgb(255, 255, 255);
+            padding: 12px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .nav-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+
+        .nav-left {
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .nav-center {
+            justify-content: center;
+        }
+
+        .nav-right {
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            background-color: transparent; 
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-bar {
+            padding: 7px 15px;
+            border-radius: 5px 0 0 5px;
+            border: 1px solid #444;
+            background-color: #25064d;
+            color: white;
+            outline: none;
+            width: 200px;
+        }
+
+
+        h1 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 300px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.budget-box {
+    background-color: rgba(0, 150, 255, 0.3); 
+    padding: 30px 60px;
+    width: 80%; 
+    max-width: 800px;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    text-align: center;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.budget-input {
+    width: 90%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between; 
+    margin-right: 90px;
+    margin-left: 100px;
+    width: 80%;
+    max-width: 800px; 
+}
+
+.action-btn {
+    background-color: #000000; 
+    color: #ffffff;            
+    padding: 10px 25px;      
+    border-radius: 50px;       
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+    min-width: 160px;          
+}
+    </style>
+    
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="nav-section nav-left">
+            <button class="nav-btn" onclick="location.href='#'">Home</button>
+            <button class="nav-btn" onclick="alert('Searching for your location...')">Locate</button>
+        </div>
+
+        <div class="nav-section nav-center">
+            <h1>Product Locator</h1>
+        </div>
+
+        <div class="nav-section nav-right">
+            <input type="text" id="searchInput" placeholder="Search">
+            <button onclick="handleSearch()">Search</button>
+        </div>
+    </nav>
+
+    <div class="hero-container">
+        <div class="budget-box">
+            <h2>Want a gaming laptop?</h2>
+            <p>Enter your budget and let's find the right one for you!</p>
+            <input type="number" class="budget-input" id="budgetAmount" placeholder="Enter here...">
+        </div>
+    </div>
+
+    <div class="button-row"> 
+                <button class="action-btn"> Brand & Discounts</button>
+                <button class="action-btn"> Store location</button>
+            </div>
+    <script>
+        const budgetInput = document.getElementById('budgetAmount');
+        budgetInput.addEventListener('input', (e) => {
+            console.log("Current Budget:", e.target.value);
+        });
+    </script>
+</body>
+</html>
